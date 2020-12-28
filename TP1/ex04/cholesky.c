@@ -15,9 +15,9 @@ for(int i=1;i<n;i++)
 	{
 		s=s+A[i][j]*x[j];
 	}
-	x[i]=(B[i]-s)/A[i][i];
+	x[i]=(B[i]-s)/A[i-1][i-1];
 }
-  return (x);
+  return x;
 }
 
 float *remontee(float A[N][N], float B[N], int n)
@@ -45,9 +45,9 @@ float C[n][n];
 	for(int i=1;i<n;i++)
 		C[i][0]=A[i][0]/C[0][0];
 
-	for(int j=0;j<n;j++)
+	for(int j=1;j<n;j++)
 	{
-		for(int i=1;i<j;i++){
+		for(int i=0;i<j;i++){
 			C[i][j]=0;}
 	
 		float s=0;
@@ -77,6 +77,8 @@ for(int i=0;i<n;i++)
 }
    
 float *y=descente(C, B, n);
+for(int i=0;i<n;i++) 
+	printf("%f \t",y[i]);
 float   *x;
 x = malloc(sizeof(float) * n);
 x=remontee(CT, y, n);
@@ -114,7 +116,7 @@ int main()
 
   /* The calculation of the result */
   x = cholesky(A, B, n);
-
+printf("\n");
   /* Printing the results */
   printf("\nThe resulting vector: [");
   for (int i = 0; i < n; i++)
