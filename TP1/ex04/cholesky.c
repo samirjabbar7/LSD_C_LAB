@@ -11,7 +11,7 @@ x[0]=B[0]/A[0][0];
 for(int i=1;i<n;i++)
 {
 	float s=0;
-	for(int j=0;j<i;j++)
+	for(int j=0;j<=i-1;j++)
 	{
 		s=s+A[i][j]*x[j];
 	}
