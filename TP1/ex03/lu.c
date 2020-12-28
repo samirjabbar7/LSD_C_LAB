@@ -28,15 +28,15 @@ float *lu(float A[N][N], float B[N], int n)
   for(int i=1;i<n;i++)
   {
 	float s=0;
-	for(int j=0;j<i;j++)
+	for(int j=0;j<=i-1;j++)
 	{
-		s=s+L[i][j]*x[j];
+		s=s+L[i][j]*y[j];
 	}
 	y[i]=B[i]-s;
   }
 /*remonte*/
  	x[n-1]=y[n-1]/A[n-1][n-1];
-	for(int i=n-2;i>=0;i--)
+	for(int i=n-1;i>=0;i--)
 	{
 		int s=0;
 		for(int j=i+1;j<n;j++)
