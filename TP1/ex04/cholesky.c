@@ -6,16 +6,25 @@
 float *descente(float A[N][N], float B[N], int n)
 {
 float *x;
-x = malloc(sizeof(float)* n);
-x[0]=B[0]/A[0][0];
-for(int i=1;i<n;i++)
+for(int i=0;i<n;i++)
 {
+   	for(int j=0;j<n;j++)
+		printf("%f \t",A[i][j]);
+	printf("\n");
+}
+x = malloc(sizeof(float)*n);
+x[0]=B[0]/A[0][0];
+// printf("%f\n",x[0]);
+for(int i=1;i<n;i++)
+{ 
 	float s=0;
-	for(int j=0;j<=i-1;j++)
+	for(int j=0;j<i;j++)
 	{
 		s=s+A[i][j]*x[j];
 	}
-	x[i]=(B[i]-s)/A[i-1][i-1];
+	x[i]=(B[i]-s)/A[i][i];
+	// printf("%f\n",x[i]);
+
 }
   return x;
 }
@@ -23,7 +32,7 @@ for(int i=1;i<n;i++)
 float *remontee(float A[N][N], float B[N], int n)
 {
 float   *x;
-x = malloc(sizeof(float) * n);
+x = malloc(sizeof(float)*n);
 x[n-1]=B[n-1]/A[n-1][n-1];
 for(int i=n-2;i>=0;i--)
 	{
@@ -39,7 +48,7 @@ return x;
 
 float *cholesky(float A[N][N], float B[N], int n)
 {
-float C[n][n];
+float C[N][N];
 	// on calcule les coefficients de 1ere colonne
 	C[0][0]=sqrt(A[0][0]);
 	for(int i=1;i<n;i++)
@@ -63,19 +72,19 @@ float C[n][n];
 		}
 	}
   
-float CT[n][n];
+float CT[N][N];
 for(int i=0;i<n;i++)
 {
 	for(int j=0;j<n;j++)
 		CT[j][i]=C[i][j];
 }
-for(int i=0;i<n;i++)
-{
-   	for(int j=0;j<n;j++)
-		printf("%f \t",C[i][j]);
-	printf("\n");
-}
-   
+// for(int i=0;i<n;i++)
+// {
+//    	for(int j=0;j<n;j++)
+// 		printf("%f \t",C[i][j]);
+// 	printf("\n");
+// }
+
 float *y=descente(C, B, n);
 for(int i=0;i<n;i++) 
 	printf("%f \t",y[i]);
@@ -123,4 +132,3 @@ printf("\n");
     printf("%f%c", x[i], ",]"[i == n - 1]);
   return (0);
 }
-
